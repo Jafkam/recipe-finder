@@ -1,0 +1,18 @@
+.toolbar {
+    width: 100%;
+    height: 80px;
+    color: black;
+    background-color: lightblue;
+    /* display: flex;
+    justify-content: space-between; */
+    /* text-align: center; */
+    
+}
+
+.title {
+    font-size: x-large;
+    text-align: center;
+    font-weight: 700;
+    color: green;
+    justify-items: center;
+}
