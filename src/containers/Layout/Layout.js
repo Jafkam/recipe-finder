@@ -5,6 +5,8 @@ import axios from "../../axios";
 import Recipe from "../../components/Recipe/Recipe";
 import Modal from "../../components/UI/Modal/Modal";
 import RecipeSummary from "../../components/Recipe/RecipeSummary/RecipeSummary";
+import AddRecipe from "../Recipes/AddRecipe/AddRecipe";
+import "./Layout.css";
 
 class Layout extends React.Component {
   state = {
@@ -15,16 +17,11 @@ class Layout extends React.Component {
     error: false,
     showRecipe: false,
     selectedMeal: {},
+    empty: false,
   };
 
-  openRecipeHandler = (show, recipe) => {
-    this.setState({ showRecipe: show, selectedMeal: recipe });
-  };
-
-  closeRecipeHandler = () => {
-    this.setState({ showRecipe: false });
-    //toggle modal
-    // show true / false
+  toggleRecipe = (show, recipe, empty) => {
+    this.setState({ showRecipe: show, selectedMeal: recipe, empty });
   };
 
   componentDidMount() {
@@ -47,20 +44,18 @@ class Layout extends React.Component {
   }
 
   filterRecipe = (value) => {
-    let valueLowerCase = value.toLowerCase()
+    let valueLowerCase = value.toLowerCase();
     let word = [...this.state.word];
-    word = valueLowerCase
-    console.log(word)
+    word = valueLowerCase;
+    console.log(word);
     // word = value;
     let oldList = [...this.state.defaultRecipes];
     if (value !== "") {
       oldList = [...oldList];
       let newList = [];
       newList = oldList.filter((recipe) => {
-        let strMealLowerCase = recipe.strMeal.toLowerCase()
-       return strMealLowerCase.startsWith(word);
-        
-        
+        let strMealLowerCase = recipe.strMeal.toLowerCase();
+        return strMealLowerCase.startsWith(word);
       });
       this.setState({ updatedRecipes: newList, word });
     } else {
@@ -69,33 +64,46 @@ class Layout extends React.Component {
   };
 
   render() {
+    let recipeRender =
+      this.state.word.length < 1
+        ? this.state.sliceRecipes
+        : this.state.updatedRecipes;
+
+    let posts = recipeRender.map((post) => {
+      // console.log(post);
+      // console.log(props);
+      return (
+        <Recipe
+          key={post.idMeal}
+          allProps={post}
+          show={this.showRecipe}
+          openModal={() => this.toggleRecipe(true, post)}
+        />
+      );
+    });
+    let modalContent =
+      this.state.empty === true ? (
+        <AddRecipe />
+      ) : (
+        <RecipeSummary recipe={this.state.selectedMeal} />
+      );
+    console.log(Object.keys(this.state.selectedMeal).length );
+    console.log(modalContent);
+
     return (
       <>
         <Toolbar
           recipe={this.state.updatedRecipes}
           filterRecipe={this.filterRecipe}
+          openModal={() => this.toggleRecipe(true, {}, true)}
         />
         <Modal
           show={this.state.showRecipe}
-          modalClosed={this.closeRecipeHandler}
+          modalClosed={() => this.toggleRecipe(false, {}, false)}
         >
-          <RecipeSummary recipe={this.state.selectedMeal} />
+          {modalContent}
         </Modal>
-        <Recipes
-          props={
-            this.state.word.length < 1
-              ? this.state.sliceRecipes
-              : this.state.updatedRecipes
-          }
-          show={this.showRecipe}
-          openModal={() => this.openRecipeHandler(true)}
-        />
-
-        {/* {this.state.updatedRecipes} */}
-        {/* <Recipes
-          recipe={this.state.defaultRecipes}
-          filterRecipe={this.state.updatedRecipes}
-        /> */}
+        <div className="boxes">{posts}</div>
       </>
     );
   }

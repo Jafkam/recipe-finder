@@ -3,6 +3,8 @@ import Recipe from "../../components/Recipe/Recipe";
 import "./Recipes.css";
 
 const Recipes = ({ props, show, openModal }) => {
+
+  
   let posts = props.map((post) => {
     // console.log(post);
     // console.log(props);
@@ -11,7 +13,7 @@ const Recipes = ({ props, show, openModal }) => {
         key={post.idMeal}
         allProps={post}
         show={show}
-        openModal={openModal}
+        openModal={() => openModal(true, post)}
       />
     );
   });

@@ -3,6 +3,7 @@
     height: 80px;
     color: black;
     background-color: lightblue;
+    box-shadow: 4px 4px lightgrey;
     /* display: flex;
     justify-content: space-between; */
     /* text-align: center; */

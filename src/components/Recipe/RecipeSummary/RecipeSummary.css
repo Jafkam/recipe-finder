@@ -1,0 +1,27 @@
+.recipe-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    padding: 50px;
+    background-image: contain;
+    border-radius: 25px;
+    /* height: 200px; */
+    /* width: 300px; */
+    
+  }
+
+
+.recipe-image {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  border-radius: 25px;
+  width: 50%;
+  background-image: contain;
+
+}
