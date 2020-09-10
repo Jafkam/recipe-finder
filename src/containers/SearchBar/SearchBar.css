@@ -1,0 +1,8 @@
+.toolbar__comp {
+
+    /* margin: 50px; */
+}
+.searchBar {
+    display: flex;
+    flex-direction: column;
+}

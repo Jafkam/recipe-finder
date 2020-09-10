@@ -3,25 +3,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px auto;
-    padding: 50px;
+    margin: 10px auto;
+    /* padding: 50px; */
     background-image: contain;
-    border-radius: 25px;
+    /* border-radius: 25px; */
     /* height: 200px; */
     /* width: 300px; */
+    /* overflow: scroll; */
     
   }
 
 
 .recipe-image {
-  margin: 0;
-  padding: 0;
-  border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline;
-  border-radius: 25px;
-  width: 50%;
+  width: 75%;
   background-image: contain;
 
 }
+
+  
+

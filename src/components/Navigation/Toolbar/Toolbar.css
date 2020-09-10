@@ -1,6 +1,5 @@
 .toolbar {
     width: 100%;
-    height: 80px;
     color: black;
     background-color: lightblue;
     box-shadow: 4px 4px lightgrey;
@@ -16,4 +15,5 @@
     font-weight: 700;
     color: green;
     justify-items: center;
+    width: 100%;
 }

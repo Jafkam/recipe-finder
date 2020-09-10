@@ -3,7 +3,8 @@ import "./RecipeSummary.css";
 
 const RecipeSummary = ({ recipe }) => {
   let ingredients = [];
-
+  // debugger;
+  console.log(recipe);
   for (let [key, value] of Object.entries(recipe)) {
     ingredients.push({ value });
     // console.log(`${key}: ${value}`);
@@ -11,15 +12,14 @@ const RecipeSummary = ({ recipe }) => {
   }
   let list = [];
   for (let ingredient of Object.values(ingredients)) {
-    // console.log(ingredient.value);
-    if (ingredient.value === "" || ingredient.value === null) {
-      // console.log(ingredient);
-      list = <p>nothing</p>;
-    } else {
-      // console.log(ingredients);
-      list = <li>{ingredient.value}</li>;
+  
+    if (ingredient.value !== "" || ingredient.value !== null) {
+      console.log(ingredient.value);
+      list.push(<li>{ingredient.value}</li>);
     }
   }
+console.log(list)
+
   const { strMeal, strMealThumb, strInstructions } = recipe;
 
   return (

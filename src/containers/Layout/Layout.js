@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
-import Recipes from "../Recipes/Recipes";
-import axios from "../../axios";
+import axios from "../../Axios/axios-recipes";
 import Recipe from "../../components/Recipe/Recipe";
 import Modal from "../../components/UI/Modal/Modal";
 import RecipeSummary from "../../components/Recipe/RecipeSummary/RecipeSummary";
 import AddRecipe from "../Recipes/AddRecipe/AddRecipe";
+import firebase from "../../Axios/axios-post";
 import "./Layout.css";
 
 class Layout extends React.Component {
@@ -18,6 +18,13 @@ class Layout extends React.Component {
     showRecipe: false,
     selectedMeal: {},
     empty: false,
+
+    newRecipe: {
+      strMeal: "",
+      strMealThumb: "",
+      strIngredient1: "",
+      strInstructions: "",
+    },
   };
 
   toggleRecipe = (show, recipe, empty) => {
@@ -29,6 +36,12 @@ class Layout extends React.Component {
       .get("https://www.themealdb.com/api/json/v1/1/search.php?s=")
       .then((response) => {
         const allRecipes = response.data.meals;
+        console.log(allRecipes);
+        const recipes = {
+          recipes: allRecipes,
+        };
+        console.log(allRecipes)
+
         const sliceRecipes = allRecipes.slice(0, 4);
         console.log(allRecipes);
         this.setState({
@@ -36,19 +49,20 @@ class Layout extends React.Component {
           defaultRecipes: allRecipes,
           // updatedRecipes: allRecipes,
         });
+     
       })
       .catch((error) => {
         console.log(error);
         this.setState({ error: true });
       });
+   
   }
 
   filterRecipe = (value) => {
     let valueLowerCase = value.toLowerCase();
     let word = [...this.state.word];
     word = valueLowerCase;
-    console.log(word);
-    // word = value;
+
     let oldList = [...this.state.defaultRecipes];
     if (value !== "") {
       oldList = [...oldList];
@@ -61,17 +75,32 @@ class Layout extends React.Component {
     } else {
       this.setState({ updatedRecipes: this.state.sliceRecipes });
     }
+    console.log(this.state.defaultRecipes);
+  };
+
+  saveRecipe = (event) => {
+    event.preventDefault();
+    let oldRecipes = [...this.state.defaultRecipes];
+    let newRecipe = this.state.newRecipe;
+    console.log(oldRecipes);
+
+    let newRecipeList = oldRecipes.push(newRecipe);
+
+    console.log(newRecipeList);
+
+    this.setState({ defaultRecipes: newRecipeList, showRecipe: false });
   };
 
   render() {
+    console.log(this.state.strMeal);
+    console.log(this.state.newRecipe);
+    console.log(this.state.defaultRecipes);
     let recipeRender =
       this.state.word.length < 1
         ? this.state.sliceRecipes
         : this.state.updatedRecipes;
 
     let posts = recipeRender.map((post) => {
-      // console.log(post);
-      // console.log(props);
       return (
         <Recipe
           key={post.idMeal}
@@ -83,12 +112,16 @@ class Layout extends React.Component {
     });
     let modalContent =
       this.state.empty === true ? (
-        <AddRecipe />
+        <AddRecipe
+          strMeal={(event) => this.setState({ strMeal: event })}
+          strMealThumb={(event) => this.setState({ strMealThumb: event })}
+          strIngredient1={(event) => this.setState({ strIngredient1: event })}
+          strInstructions={(event) => this.setState({ strInstructions: event })}
+          saveRecipe={this.saveRecipe}
+        />
       ) : (
         <RecipeSummary recipe={this.state.selectedMeal} />
       );
-    console.log(Object.keys(this.state.selectedMeal).length );
-    console.log(modalContent);
 
     return (
       <>

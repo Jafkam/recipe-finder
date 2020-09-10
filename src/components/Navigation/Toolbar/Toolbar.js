@@ -3,13 +3,15 @@ import "./Toolbar.css";
 import SearchBar from "../../../containers/SearchBar/SearchBar";
 import Button from "../../UI/Button/AddRecipeButton";
 
-const Toolbar = ({ recipe, filterRecipe, openModal }) => {
+const Toolbar = ({ filterRecipe, openModal }) => {
   return (
-    <header className={"toolbar"}>
-      <div className="title">Recipe finder</div>
-      <SearchBar onChange={filterRecipe} />
-      <Button openModal={openModal}/>
-    </header>
+    <>
+      <header className={"toolbar"}>
+        <div className="title">Recipe finder</div>
+        <SearchBar recipeSearch={filterRecipe} />
+        <Button className="toolbar__comp" openModal={openModal} />
+      </header>
+    </>
   );
 };
 
