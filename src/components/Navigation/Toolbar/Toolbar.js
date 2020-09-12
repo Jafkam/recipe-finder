@@ -7,9 +7,11 @@ const Toolbar = ({ filterRecipe, openModal }) => {
   return (
     <>
       <header className={"toolbar"}>
-        <div className="title">Recipe finder</div>
-        <SearchBar recipeSearch={filterRecipe} />
-        <Button className="toolbar__comp" openModal={openModal} />
+        <div className="header-space">
+          <SearchBar recipeSearch={filterRecipe} />
+          {/* <div className="title">Recipe app</div> */}
+          <Button openModal={openModal} />
+        </div>
       </header>
     </>
   );

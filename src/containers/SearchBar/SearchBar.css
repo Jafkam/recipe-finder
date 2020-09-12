@@ -1,8 +1,20 @@
-.toolbar__comp {
-
-    /* margin: 50px; */
+.search-bar-box {
+  margin: 25px 10px;
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
-.searchBar {
-    display: flex;
-    flex-direction: column;
+
+.search-bar {
+ 
+}
+
+.iconify {
+  background: url("https://api.iconify.design/gg:search.svg") no-repeat center
+    center / contain;
+  content: url("https://api.iconify.design/gg:search.svg?height=24");
+  vertical-align: -0.125em;
 }

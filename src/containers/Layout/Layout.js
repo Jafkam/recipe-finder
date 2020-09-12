@@ -13,6 +13,7 @@ class Layout extends React.Component {
     defaultRecipes: [],
     updatedRecipes: [],
     sliceRecipes: [],
+    randomMeal: [],
     word: "",
     error: false,
     showRecipe: false,
@@ -40,22 +41,26 @@ class Layout extends React.Component {
         const recipes = {
           recipes: allRecipes,
         };
-        console.log(allRecipes)
+        console.log(allRecipes);
 
         const sliceRecipes = allRecipes.slice(0, 4);
-        console.log(allRecipes);
+        // console.log(allRecipes);
         this.setState({
           sliceRecipes: sliceRecipes,
           defaultRecipes: allRecipes,
           // updatedRecipes: allRecipes,
         });
-     
+      });
+    axios
+      .get("https://www.themealdb.com/api/json/v1/1/random.php")
+      .then((response) => {
+        const randomMeal = response.data.meals[0];
+        this.setState({ randomMeal });
       })
       .catch((error) => {
         console.log(error);
         this.setState({ error: true });
       });
-   
   }
 
   filterRecipe = (value) => {
@@ -82,7 +87,7 @@ class Layout extends React.Component {
     event.preventDefault();
     let oldRecipes = [...this.state.defaultRecipes];
     let newRecipe = this.state.newRecipe;
-    console.log(oldRecipes);
+    // console.log(oldRecipes);
 
     let newRecipeList = oldRecipes.push(newRecipe);
 
@@ -92,9 +97,9 @@ class Layout extends React.Component {
   };
 
   render() {
-    console.log(this.state.strMeal);
-    console.log(this.state.newRecipe);
-    console.log(this.state.defaultRecipes);
+    // console.log(this.state.strMeal);
+    // console.log(this.state.newRecipe);
+    // console.log(this.state.defaultRecipes);
     let recipeRender =
       this.state.word.length < 1
         ? this.state.sliceRecipes
@@ -110,6 +115,15 @@ class Layout extends React.Component {
         />
       );
     });
+    let randomMeal = this.state.randomMeal;
+    randomMeal = (
+      <Recipe
+        allProps={randomMeal}
+        show={this.showRecipe}
+        openModal={() => this.toggleRecipe(true, this.state.randomMeal)}
+      />
+    );
+
     let modalContent =
       this.state.empty === true ? (
         <AddRecipe
@@ -136,7 +150,10 @@ class Layout extends React.Component {
         >
           {modalContent}
         </Modal>
+        <h3 className="boxes-text">Random Recipe Generator</h3>
         <div className="boxes">{posts}</div>
+        <h1>Random Meal</h1>
+        <div className="random-meal">{randomMeal}</div>
       </>
     );
   }

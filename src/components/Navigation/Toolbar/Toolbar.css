@@ -1,19 +1,18 @@
 .toolbar {
-    width: 100%;
-    color: black;
-    background-color: lightblue;
-    box-shadow: 4px 4px lightgrey;
-    /* display: flex;
-    justify-content: space-between; */
-    /* text-align: center; */
-    
+  background-color: lightblue;
+  box-shadow: 4px 4px lightgrey;
+  border-radius: 15px;
 }
 
 .title {
-    font-size: x-large;
-    text-align: center;
-    font-weight: 700;
-    color: green;
-    justify-items: center;
-    width: 100%;
+  font-size: x-large;
+  text-align: center;
+  font-weight: 700;
+  color: green;
+  margin: auto;
+}
+
+.header-space {
+  display: flex;
+  justify-content: space-between;
 }

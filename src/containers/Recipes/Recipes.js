@@ -3,11 +3,7 @@ import Recipe from "../../components/Recipe/Recipe";
 import "./Recipes.css";
 
 const Recipes = ({ props, show, openModal }) => {
-
-  
   let posts = props.map((post) => {
-    // console.log(post);
-    // console.log(props);
     return (
       <Recipe
         key={post.idMeal}
@@ -18,7 +14,7 @@ const Recipes = ({ props, show, openModal }) => {
     );
   });
 
-  return <div className="boxes">{posts}</div>;
+  return { posts };
 };
 
 export default Recipes;

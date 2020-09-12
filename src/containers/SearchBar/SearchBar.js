@@ -3,15 +3,19 @@ import "./SearchBar.css";
 
 const SearchBar = ({ recipeSearch }) => {
   return (
-    <div className='searchBar'>
-    <span>Search for your Recipes</span>
+    <div className="search-bar-box">
       <input
-        className="toolbar__comp"
+        className="search-bar"
         type="text"
         placeholder="Search me"
         name="search"
         onChange={(event) => recipeSearch(event.currentTarget.value)}
       />
+      <span
+        className="iconify"
+        data-icon="gg:search"
+        data-inline="false"
+      ></span>
     </div>
   );
 };
