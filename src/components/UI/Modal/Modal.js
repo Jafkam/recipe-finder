@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Backdrop from "../Backdrop/Backdrop";
-import "./Modal.css";
+import '../../../sass/components/_Modal.scss';
 
 const Modal = ({ show, modalClosed, children }) => {
   return (

@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 22.5%;
+  margin: 3rem 0;
+  padding: 1rem;
+  border: 1px solid lightgray;
+  background-image: contain;
+  border-radius: 25px;
+  box-shadow: 2px 2px lightgrey;
+  background-color: lightblue;
+
+  &__image {
+    font-size: 100%;
+    border-radius: 50%;
+    width: 100%;
+    margin-top: 2rem;
+  }
+  &__more-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:50%;
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem 0 2rem 0;
+    float: right;
+    border-radius: 10rem;
+    text-transform: uppercase;
+    background-color: white;
+    cursor: pointer;
+  }
+}
+
+.dish {
+  text-align: center;
+}

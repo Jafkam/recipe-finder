@@ -1,21 +1,22 @@
 import React from "react";
-import "./SearchBar.css";
+import "../../sass/components/_SearchBar.scss";
+import '../../images/sprite.svg'
 
 const SearchBar = ({ recipeSearch }) => {
   return (
-    <div className="search-bar-box">
+    <div className="search">
       <input
-        className="search-bar"
+        className="search__bar"
         type="text"
         placeholder="Search me"
         name="search"
         onChange={(event) => recipeSearch(event.currentTarget.value)}
       />
-      <span
-        className="iconify"
-        data-icon="gg:search"
-        data-inline="false"
-      ></span>
+      <button class="search__button">
+        <svg class="search__icon">
+          <use xlinkHref="../../images/sprite.svg#icon-search"></use>
+        </svg>
+      </button>
     </div>
   );
 };

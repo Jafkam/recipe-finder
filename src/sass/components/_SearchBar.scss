@@ -1,0 +1,53 @@
+.search {
+  flex: 0 0 40%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__bar {
+    font-family: inherit;
+
+    font-size: inherit;
+    color: inherit;
+    // background-color: yellow;
+    border: none;
+    padding: 0.7rem 2rem;
+    border-radius: 100px;
+    width: 90%;
+    transition: all 0.2s;
+    margin-right: -3.2rem;
+
+    &:focus {
+      outline: none;
+      width: 100%;
+      background-color: green;
+    }
+
+    &::-webkit-input-placeholder {
+      font-weight: 100;
+      color: red;
+    }
+  }
+
+  &__input:focus + &__button {
+    // background-color: lightcoral;
+  }
+
+  &__button {
+    border: none;
+    // background-color: lightblue;
+
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+    // fill: grey;
+  }
+}

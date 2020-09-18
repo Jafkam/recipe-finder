@@ -1,5 +1,5 @@
 import React from "react";
-import "./RecipeSummary.css";
+import '../../../sass/components/_RecipeSummary.scss';
 
 const RecipeSummary = ({ recipe }) => {
   const list = [];
@@ -20,7 +20,7 @@ const RecipeSummary = ({ recipe }) => {
   return (
     <div className="recipe-container">
       <h1>{strMeal}</h1>
-      <img src={strMealThumb} alt={strMeal} className="recipe-image" />
+      <img src={strMealThumb} alt={strMeal} className="recipe-container__recipe-image" />
       <h2> Instructions</h2>
       <div>{strInstructions}</div>
       <h2> Ingredients</h2>

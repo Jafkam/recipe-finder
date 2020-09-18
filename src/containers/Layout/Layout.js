@@ -4,9 +4,8 @@ import axios from "../../Axios/axios-recipes";
 import Recipe from "../../components/Recipe/Recipe";
 import Modal from "../../components/UI/Modal/Modal";
 import RecipeSummary from "../../components/Recipe/RecipeSummary/RecipeSummary";
-import AddRecipe from "../Recipes/AddRecipe/AddRecipe";
-import firebase from "../../Axios/axios-post";
-import "./Layout.css";
+import AddRecipe from "../AddRecipe/AddRecipe";
+import '../../sass/components/_Layout.scss';
 
 class Layout extends React.Component {
   state = {
@@ -59,7 +58,8 @@ class Layout extends React.Component {
       })
       .catch((error) => {
         console.log(error);
-        this.setState({ error: true });
+        this.setState({ error: error });
+        console.log(error)
       });
   }
 
@@ -138,8 +138,8 @@ class Layout extends React.Component {
       );
 
     return (
-      <>
-        <Toolbar
+  <>
+     <Toolbar
           recipe={this.state.updatedRecipes}
           filterRecipe={this.filterRecipe}
           openModal={() => this.toggleRecipe(true, {}, true)}
@@ -150,11 +150,15 @@ class Layout extends React.Component {
         >
           {modalContent}
         </Modal>
-        <h3 className="boxes-text">Random Recipe Generator</h3>
+        <h3 className="boxes-text">Search for your meal or add one if it's not available</h3>
         <div className="boxes">{posts}</div>
         <h1>Random Meal</h1>
         <div className="random-meal">{randomMeal}</div>
-      </>
+
+       </>
+
+        
+   
     );
   }
 }

@@ -4,7 +4,7 @@
   border-radius: 15px;
 }
 
-.title {
+.header__title {
   font-size: x-large;
   text-align: center;
   font-weight: 700;
@@ -12,7 +12,7 @@
   margin: auto;
 }
 
-.header-space {
+.toolbar__header-space {
   display: flex;
   justify-content: space-between;
 }

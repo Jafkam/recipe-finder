@@ -3,9 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 12px;
-}
+  margin: 1.2rem;
 
-.form-item {
-  margin: 12px;
+  & > * {
+    margin: 12px;
+  }
 }

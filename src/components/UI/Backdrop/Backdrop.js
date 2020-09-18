@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Backdrop.css";
+import '../../../sass/components/_Backdrop.scss'
 
 const Backdrop = ({ clicked, show }) =>
   show ? <div className="backdrop" onClick={clicked}></div> : null;
